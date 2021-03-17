@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.mycontainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.form-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.detail-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* background-color: red; */
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.form-content__signin {
+  position: absolute;
+  transform: translate(-70%, 0);
+  /* left: 300px; */
+  transition: 0.6s 0.5s ease-in-out;
+  /* z-index: 5; */
+  /* opacity: 0.1; */
+}
+.form-content__signup {
+  position: relative;
+  transform: translate(70%, 0);
+
+  transition: 0.6s 0.5s ease-in-out;
+  /* opacity: 0.1; */
+}
+.to-left {
+  transform: translate(320%, 0);
+  opacity: 0;
+}
+.to-right {
+  transform: translate(-320%, 0);
+  opacity: 0;
+}
+.img {
+  width: 50%;
+  height: 50%;
+  /* z-index: 5 ; */
+}
+.text-content {
+  text-align: center;
+  color: white;
+  transform: translate(-16rem, -5rem);
+}
+.leftcontent {
+  position: absolute;
+  top: 0;
+  left: -40%;
+  z-index: 5 !important;
+  transition: 1.52s 0.4s ease-in-out;
+}
+.rightcontent {
+  position: relative;
+  top: 0;
+  right: -80%;
+  z-index: 5 !important;
+  transition: 1.52s 0.4s ease-in-out;
+}
+
+.bgg-move {
+  transform: translate(100%, 0);
+  opacity: 1;
+}
+
+.input-feld {
+  position: relative;
+  width: 30rem;
+  /* width: ; */
+  height: 55px;
+  display: flex;
+  margin: 10px 0;
+  padding: 0 0.4rem;
+}
+.input-feld i {
+  position: absolute;
+  line-height: 50px;
+  font-size: 1.1rem;
+  text-align: center;
+  padding-left: 1rem;
+}
+.input-feld input {
+  /* position: absolute; */
+  width: 100%;
+  background: #ddd;
+  border: none;
+  padding: 0 3rem;
+  border-radius: 25px;
+  outline: none;
+  height: 3rem;
+}
+.btn-icon {
+  border: 1px solid black;
+  /* padding: 1rem; */
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+
+  z-index: 10;
+}
+.btn-change {
+  color: white;
+  padding: 0 1rem;
+  border: 2px solid white;
+  height: 3rem;
+}
+.my-form {
+  text-align: center;
+}
+.bgg {
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  right: 50%;
+  top: -280%;
+  z-index: 1;
+  transition: 1.5s ease-in-out;
+  border-radius: 50%;
+  background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+}
+/* ????????????? */
+form {
+  padding: 0rem 4rem;
+}

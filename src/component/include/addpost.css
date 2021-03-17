@@ -1,0 +1,52 @@
+.add-box {
+  position: fixed;
+  width: 27%;
+  height: 40vh;
+  margin: 0 1rem;
+  border: 1px solid #ddd;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  /* padding: 1rem; */
+  /* background-color: aqua; */
+}
+.add-box__header {
+  /* background-color: red; */
+  border-bottom: 1px solid #ddd;
+  box-shadow: 1px 1px #ccc;
+  text-align: center;
+}
+.add-box__title {
+  display: flex;
+  margin: 0.5rem 0;
+}
+.add-avt {
+  width: 3rem;
+  height: 3rem;
+  background-color: red;
+  border-radius: 50%;
+  margin: 0 1rem;
+}
+.add-name {
+  line-height: 3rem;
+  font-weight: bold;
+}
+.area-input {
+  width: 92%;
+  margin: 0.5rem 1rem;
+  height: 7.5rem;
+  border: none;
+  outline: none;
+}
+.area-input:focus {
+  border: none;
+  outline: none;
+}
+.add-box-btn {
+  text-align: center;
+
+  padding: 0 1rem;
+  /* background-color: blue; */
+}
+.add-btn {
+  width: 100%;
+}
