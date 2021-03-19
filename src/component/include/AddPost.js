@@ -6,7 +6,7 @@ export default function AddPost() {
   const [news, setnews] = useState("");
   const [val, setVal] = useState("");
   function handelChange(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setnews(event.target.value);
   }
   async function handleUp() {
@@ -21,7 +21,9 @@ export default function AddPost() {
         post: news,
         timestamp: Date.now(),
       });
+      
     } catch (error) {}
+    
   }
   useEffect(() => {
     // console.log(dtb(auth().currentUser.uid));
@@ -37,21 +39,32 @@ export default function AddPost() {
         <h3>Add post</h3>
       </div>
       <div className="add-box__title">
-        <img className="add-avt" src={val.image||'https://pickaface.net/gallery/avatar/unr_none_161214_0941_9oav0t.png'} />
+        <img
+          className="add-avt"
+          src={
+            val.image ||
+            "https://pickaface.net/gallery/avatar/unr_none_161214_0941_9oav0t.png"
+          }
+        />
         <div className="add-name">{val.name}</div>
       </div>
-
-      <textarea
-        className="area-input"
-        name="news"
-        onChange={handelChange}
-        placeholder="Bạn đang nghĩ gì ?"
-      ></textarea>
-      <div className="add-box-btn">
-        <button onClick={handleUp} className="add-btn btn btn-primary">
-          Đăng
-        </button>
-      </div>
+      <form style={{width:'100%',padding :'0'}}>
+        <textarea
+          className="area-input"
+          name="news"
+          onChange={handelChange}
+          placeholder="Bạn đang nghĩ gì ?"
+        ></textarea>
+        <div className="add-box-btn">
+          <button
+            type="reset"
+            onClick={handleUp}
+            className="add-btn btn btn-primary"
+          >
+            Đăng
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { db } from "../services/firebase";
 import Header from "./Header";
 // import Setname from "./Setname";
 // import { Link, withRouter } from "react-router-dom";
-export default function ChatForm() {
+export default function ChatForm(props) {
   const history = useHistory();
   const [user, setUser] = useState(auth().currentUser);
   const [chat, setChat] = useState([]);
@@ -23,6 +23,7 @@ export default function ChatForm() {
         snapshot.forEach((snap) => {
           chats.push(snap.val());
         });
+        // let toChat = chats.filter((x) => x.uid === props.chatTo.uid);
         setChat(chats);
         // setScroll(!scroll);
 
@@ -71,6 +72,7 @@ export default function ChatForm() {
         await db.ref("chats").push({
           content: content,
           timestamp: Date.now(),
+          touid:props.chatTo.uid,
           uid: user.uid,
         });
 
@@ -79,6 +81,8 @@ export default function ChatForm() {
         setWriteErr(error.message);
       }
   }
+  // console.log(chat);
+  // console.log(props.chatTo.uid);
   return (
     // <div>
     //   <Header />
@@ -86,58 +90,60 @@ export default function ChatForm() {
       <div className="box-chat__header">
         <div className="chat-header__left">
           <img
-            className="chat-avt"
-            src="https://pickaface.net/gallery/avatar/unr_none_161214_0941_9oav0t.png"
+            className="chat-avt m-1"
+            src={props.chatTo.image}
           />
 
-          <div className="chat-name">
-            Login in as: <strong>{user.email}</strong>
+          <div className="chat-name m-1">
+            Chat to: <strong>{props.chatTo.name}</strong>
           </div>
         </div>
         <div className="chat-header__right">
-          <button className=""></button>
+          <button onClick={()=>props.ofChat()} className="off-chat"><i className="fas fa-times"></i></button>
         </div>
       </div>
 
       <div className="box-chat__content" id="scroll">
-        {chat.map((chat) => {
-          // console.log(chat);
-          if (chat.uid === user.uid) {
-            // console.log(chat.content);
-            return (
-              <div>
-                <div style={{ float: "right" }}>
-                  <div className="schat content-chat">{chat.content}</div>
-                  <div>
-                    {new Date(chat.timestamp).toLocaleTimeString("en-US")}
+        {chat
+          .filter((x) => ((x.uid === props.chatTo.uid||x.uid===user.uid)&&(x.touid===props.chatTo.uid||x.touid===user.uid)))
+          .map((chat) => {
+            // console.log(chat);
+            if (chat.uid === user.uid) {
+              // console.log(chat.content);
+              return (
+                <div>
+                  <div style={{ float: "right" }}>
+                    <div className="schat content-chat">{chat.content}</div>
+                    <div>
+                      {new Date(chat.timestamp).toLocaleTimeString("en-US")}
+                    </div>
                   </div>
-                </div>
 
-                <div className="clear-float"></div>
-              </div>
-            );
-          } else {
-            var image = "";
-            var name = "";
-            let per = acc.filter((x) => x.uid === chat.uid);
-            if (per.length !== 0) {
-              if (acc != null) {
-                name = per[0].name;
-                image = per[0].image;
+                  <div className="clear-float"></div>
+                </div>
+              );
+            } else {
+              var image = "";
+              var name = "";
+              let per = acc.filter((x) => x.uid === chat.uid);
+              if (per.length !== 0) {
+                if (acc != null) {
+                  name = per[0].name;
+                  image = per[0].image;
+                }
               }
+              return (
+                <div style={{ color: "blue" }} key={chat.timestamp}>
+                  <Contentchat
+                    avt={image}
+                    name={name}
+                    content={chat.content}
+                    time={new Date(chat.timestamp).toLocaleTimeString("en-US")}
+                  />
+                </div>
+              );
             }
-            return (
-              <div style={{ color: "blue" }} key={chat.timestamp}>
-                <Contentchat
-                  avt={image}
-                  name={name}
-                  content={chat.content}
-                  time={new Date(chat.timestamp).toLocaleTimeString("en-US")}
-                />
-              </div>
-            );
-          }
-        })}
+          })}
       </div>
 
       <div className="box-chat__send">

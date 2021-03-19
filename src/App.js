@@ -71,37 +71,8 @@ class App extends Component {
         });
       }
     });
-    await db.ref("user").on("value", (snapshot) => {
-      var acc = [];
-      snapshot.forEach((x) => {
-        acc.push(x.val());
-      });
-      if (acc.filter((x) => x.uid === auth().currentUser.uid).length > 0) {
-      } else {
-        // console.log(auth().currentUser.displayName);
-       db.ref("user/" + auth().currentUser.uid).set({
-          uid: auth().currentUser.uid,
-          email: auth().currentUser.email,
-          timestamp: Date.now(),
-          image: auth().currentUser.photoURL,
-          name: auth().currentUser.displayName,
-        });
-        // db.ref("user").push({
-        //   uid: auth().currentUser.uid,
-        //   email: auth().currentUser.email,
-        //   timestamp: Date.now(),
-        //   image: auth().currentUser.photoURL,
-        //   name: auth().currentUser.displayName,
-        // });
-      }
-    });
   }
   render() {
-    // console.log(auth().currentUser.uid);
-    // var dt =db.ref('user/'+auth().currentUser.uid).get().then(dt=>{
-    //   console.log(dt.val());
-    // })
-    // console.log(db.ref('user/'+auth().currentUser.uid).get());
     return (
       <div>
         {this.state.loading === true ? (
@@ -112,7 +83,7 @@ class App extends Component {
               <Switch>
                 {/* <Route exact path="/" component={Home}></Route> */}
                 <PrivateRoute
-                  path="/chat"
+                  path="/home"
                   authenticated={this.state.authenticated}
                   component={Home}
                 ></PrivateRoute>

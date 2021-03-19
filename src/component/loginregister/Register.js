@@ -11,17 +11,14 @@ export default function Register() {
     name: "",
   });
   // const [uid, setUid] = useState(auth().currentUser);
-  // const [comIn, setComIn] = useState(false);
+  // const [err, setErr] = useState('');
   const [statue, setStatue] = useState(true);
-  //   const [email, setemail] = useState("");
-  //   const [password, setpassword] = useState("");
-  //   const [name, setname] = useState("");
-  const [error, seterror] = useState(null);
+  const [error, setError] = useState(null);
   function changeSta() {
     setStatue(!statue);
   }
   const handleChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setValinput((preState) => {
       return {
         ...preState,
@@ -34,24 +31,23 @@ export default function Register() {
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    seterror("");
+    setError("");
     try {
       await signin(valinput.email, valinput.password);
-      history.push("/chat");
+      history.push("/home");
     } catch (error) {
-      seterror(error.message);
+      setError(error.message);
     }
   }
   async function handleSubmitSignup(e) {
     e.preventDefault();
-    console.log("<<<,,,");
-    seterror("");
+    setError("");
     try {
       await signup(valinput.email, valinput.password);
-      history.push("/chat");
+      history.push("/home");
     } catch (error) {
       console.log(error);
-      seterror(error.message);
+      setError(error.message);
     }
   }
   async function googleSignIn() {
@@ -60,7 +56,7 @@ export default function Register() {
       await signInWithGoogle();
       history.push("/chat");
     } catch (error) {
-      seterror(error.message);
+      setError(error.message);
     }
   }
   return (
@@ -78,7 +74,7 @@ export default function Register() {
               <input
                 onChange={handleChange}
                 type="email"
-                class="form-control"
+                // class="form-control"
                 name="email"
                 placeholder="Email"
               />
@@ -93,6 +89,7 @@ export default function Register() {
                 placeholder="Password"
               />
             </div>
+            {error?<p className='text-danger'>{error}</p>:null}
             <button class="btn btn-primary" type="submit">
               Login
             </button>
@@ -114,7 +111,7 @@ export default function Register() {
           >
             <h3>Sign up</h3>
             <div className="input-feld">
-              <i className="fas fa-user"></i>
+              {/* <i className="fas fa-user"></i> */}
               {/* <input
                 onChange={handleChange}
                 type="name"
@@ -143,6 +140,7 @@ export default function Register() {
                 placeholder="Password"
               />
             </div>
+            {error?<p className='text-danger'>{error}</p>:null}
             <button class="btn btn-primary" type="submit">
               Sign up
             </button>
@@ -157,7 +155,7 @@ export default function Register() {
         <div className={!statue ? "to-right leftcontent" : "leftcontent"}>
           <div className="text-content">
             <h3>Sign in</h3>
-            <p>
+            <p className="text-content-p">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
@@ -170,7 +168,7 @@ export default function Register() {
         <div className={statue ? "to-left rightcontent" : "rightcontent"}>
           <div className="text-content">
             <h3>Sign up</h3>
-            <p>
+            <p className="text-content-p">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>

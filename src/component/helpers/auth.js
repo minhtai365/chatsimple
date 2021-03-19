@@ -22,6 +22,6 @@ export function signin(email, password) {
 export function signInWithGoogle() {
   const provider = new auth.GoogleAuthProvider();
 
-  console.log(provider);
+  // console.log(provider);
   return auth().signInWithPopup(provider);
 }

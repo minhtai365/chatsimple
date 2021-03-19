@@ -37,18 +37,18 @@ export default function EditPro() {
     db.ref("user").on("value", (u) => {
       // let us = [];
       u.forEach((x) => {
-        console.log(x.val().uid);
+        // console.log(x.val().uid);
         if (x.val().uid === auth().currentUser.uid) setUser(x.val());
       });
       // setUser(us);
     });
   }, []);
-  console.log(auth().currentUser);
-  console.log(user);
+  // console.log(auth().currentUser);
+  // console.log(user);
   return (
     <div className="center-content">
       <div style={{ textAlign: "right" }}>
-        <Link style={{ height: "2.3rem" }} className="btn text-light btn-login" to="/Chat">
+        <Link style={{ height: "2.3rem" }} className="btn text-light btn-login" to="/home">
           Go To Chat
         </Link>
       </div>
