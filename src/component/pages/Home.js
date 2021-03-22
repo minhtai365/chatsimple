@@ -4,11 +4,13 @@ import FrentList from "../include/FrentList";
 import MainPost from "../include/MainPost";
 import { auth, db } from "../services/firebase";
 import ChatForm from "./ChatForm";
+import EditPro from "./EditPro";
 import Header from "./Header";
 
 export default function Home() {
   const [add, setAdd] = useState(false);
   const [chatFrent, setChatFrent] = useState(null);
+  const [showEdit, setShowEdit] = useState(false)
   useEffect(async () => {
     await db.ref("user").on(
       "value",
@@ -39,7 +41,12 @@ export default function Home() {
       []
     );
   });
-
+function isShow(){
+  setShowEdit(true);
+}
+function offEdit(){
+  setShowEdit(false);
+}
   function getToChat(chatTo) {
     setChatFrent(chatTo);
     // console.log(chatTo);
@@ -51,8 +58,9 @@ export default function Home() {
   return (
     <div>
       <div className="heade">
-        <Header />
+        <Header showEdit={()=>isShow()}/>
       </div>
+      {showEdit&&<EditPro hiddenEdit={()=>offEdit()}/>} 
       <div className="frentlist">
         <FrentList getChat={(chatTo) => getToChat(chatTo)} />
       </div>

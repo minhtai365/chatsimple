@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../services/firebase";
 
-export default function EditPro() {
+export default function EditPro(props) {
   const [user, setUser] = useState();
   const [inputCha, setInputCha] = useState({
     name:  auth().currentUser.displayName,
@@ -48,9 +48,9 @@ export default function EditPro() {
   return (
     <div className="center-content">
       <div style={{ textAlign: "right" }}>
-        <Link style={{ height: "2.3rem" }} className="btn text-light btn-login" to="/home">
-          Go To Chat
-        </Link>
+        <button onClick={()=>props.hiddenEdit()} style={{ height: "2.3rem" }} className="btn text-light btn-login">
+         <i className='fas fa-times'></i>
+        </button>
       </div>
       <div className="form-group">
         <label for="name">Name</label>

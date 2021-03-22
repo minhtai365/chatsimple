@@ -34,7 +34,7 @@ export default function Register() {
     setError("");
     try {
       await signin(valinput.email, valinput.password);
-      history.push("/home");
+      // history.push("/home");
     } catch (error) {
       setError(error.message);
     }
@@ -44,7 +44,7 @@ export default function Register() {
     setError("");
     try {
       await signup(valinput.email, valinput.password);
-      history.push("/home");
+      // history.push("/home");
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -54,7 +54,7 @@ export default function Register() {
     try {
       // console.log('long');
       await signInWithGoogle();
-      history.push("/chat");
+      // history.push("/home");
     } catch (error) {
       setError(error.message);
     }
@@ -63,9 +63,10 @@ export default function Register() {
     <div className="mycontainer">
       <div className="form-content">
         <div
-          className={
-            statue ? "to-left form-content__signin" : "form-content__signin"
-          }
+        // {
+        //   statue ? "to-left form-content__signin" : 
+          className="form-content__signin"
+          // }
         >
           <form className="my-form" autoComplete="off" onSubmit={handleSubmit}>
             <h2>Sign in</h2>
@@ -100,9 +101,10 @@ export default function Register() {
           </form>
         </div>
         <div
-          className={
-            !statue ? "to-right form-content__signup" : "form-content__signup"
-          }
+        // {
+        //     !statue ? "to-right form-content__signup" : 
+          className="form-content__signup"
+          // }
         >
           <form
             className="my-form"
@@ -110,7 +112,7 @@ export default function Register() {
             onSubmit={handleSubmitSignup}
           >
             <h3>Sign up</h3>
-            <div className="input-feld">
+            {/* <div className="input-feld"> */}
               {/* <i className="fas fa-user"></i> */}
               {/* <input
                 onChange={handleChange}
@@ -119,7 +121,7 @@ export default function Register() {
                 name="name"
                 placeholder="Name"
               /> */}
-            </div>
+            {/* </div> */}
             <div className="input-feld">
               <i className="fas fa-envelope"></i>
               <input
@@ -152,7 +154,11 @@ export default function Register() {
         </div>
       </div>
       <div className="detail-content">
-        <div className={!statue ? "to-right leftcontent" : "leftcontent"}>
+        <div
+        // {!statue ? "to-right leftcontent" : 
+        className="leftcontent"
+      // }
+      >
           <div className="text-content">
             <h3>Sign in</h3>
             <p className="text-content-p">
@@ -165,7 +171,11 @@ export default function Register() {
           </div>
           <img className="img" src="img/log.svg" />
         </div>
-        <div className={statue ? "to-left rightcontent" : "rightcontent"}>
+        <div className=
+        // {statue ? "to-left rightcontent" : 
+        "rightcontent"
+        // }
+        >
           <div className="text-content">
             <h3>Sign up</h3>
             <p className="text-content-p">

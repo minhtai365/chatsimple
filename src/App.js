@@ -14,6 +14,7 @@ import LoginRegister from "./component/loginregister/LoginRegister";
 import Register from "./component/loginregister/Register";
 import ChatForm from "./component/pages/ChatForm";
 import Home from "./component/pages/Home";
+import RegisterLogin from "./component/loginregister/RegisterLogin";
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -21,12 +22,12 @@ function PrivateRoute({ component: Component, authenticated, ...rest }) {
       {...rest}
       render={
         (props) => (
-          // authenticated === true ? (
+          authenticated === true ? (
           <Component {...props} />
-        )
-        // ) : (
-        // <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        // ):null
+        // )
+        ) : (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        ))
       }
     />
   );
@@ -37,12 +38,13 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
       {...rest}
       render={
         (props) => (
-          // authenticated === false ? (
+          authenticated === false ? (
           <Component {...props} />
-        )
-        // ) : (
-        // <Redirect to="/chat" />
         // )
+        ) : (
+        <Redirect to="/home" />
+        )
+        )
       }
     />
   );
@@ -87,11 +89,11 @@ class App extends Component {
                   authenticated={this.state.authenticated}
                   component={Home}
                 ></PrivateRoute>
-                <PublicRoute
+                {/* <PublicRoute
                   path="/signup"
                   authenticated={this.state.authenticated}
                   component={Signup}
-                ></PublicRoute>
+                ></PublicRoute> */}
 
                 <PublicRoute
                   path="/edit"
@@ -102,7 +104,7 @@ class App extends Component {
                 <PublicRoute
                   path="/"
                   authenticated={this.state.authenticated}
-                  component={Register}
+                  component={RegisterLogin}
                 ></PublicRoute>
               </Switch>
             </Router>
