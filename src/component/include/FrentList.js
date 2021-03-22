@@ -1,6 +1,6 @@
 import "./frentlist.css";
 import React, { useEffect, useState } from "react";
-import { db } from "../services/firebase";
+import { auth, db } from "../services/firebase";
 
 import Slider from "react-slick";
 
@@ -14,7 +14,8 @@ export default function FrentList(props) {
     await db.ref("user").on("value", (snapshot) => {
       var acc = [];
       snapshot.forEach((x) => {
-        acc.push(x.val());
+        if (x.val().uid !== auth().currentUser.uid) acc.push(x.val());
+      
       });
       setUser(acc);
     });
@@ -67,7 +68,7 @@ export default function FrentList(props) {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
-      }
+      },
     ],
   };
 

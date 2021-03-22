@@ -8,10 +8,8 @@ export default function Header(props) {
   const [val, setVal] = useState("");
   async function logOut() {
     await auth().signOut();
-    // history.push("/");
   }
   useEffect(async () => {
-    // console.log(dtb(auth().currentUser.uid));
 
     await db
       .ref("user/" + auth().currentUser.uid)
@@ -22,7 +20,7 @@ export default function Header(props) {
   }, []);
   return (
     <header className="my-header">
-      <div className="my-logo btn text-primary">MY CHAT</div>
+      <div onClick={()=>props.showMusic()} className="my-logo btn text-primary">FUN CHAT</div>
 
       <div className="my-logo">
        <button onClick={()=>props.showEdit()} className=" bbn btn-info"> {val.name}</button>

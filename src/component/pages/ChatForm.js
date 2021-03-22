@@ -53,11 +53,6 @@ export default function ChatForm(props) {
   const handleScroll = () => {
     const scroll = document.getElementById("scroll");
     scroll.scrollTop = scroll.scrollHeight;
-    // window.scroll({
-    //   top: document.getElementById('scroll').offsetHeight,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
   };
   const handleChange = (event) => {
     setContent(event.target.value);

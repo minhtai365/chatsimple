@@ -9,19 +9,16 @@ export default function EditPro(props) {
     image: auth().currentUser.photoURL,
   });
   const setData = () => {
-    // var item=db.ref().child('user').push().key;
-    // console.log(item);
     db.ref("user/" + user.uid).set({
       ...user,
       name: inputCha.name,
       image: inputCha.image,
     },(error) => {
       if (error) {
-        // The write failed...
         console.log(error);
       } else {
-        // Data saved successfully!
-        console.log('ok');
+        alert('ok');
+        props.hiddenEdit();
       }
     });
   };
@@ -61,9 +58,6 @@ export default function EditPro(props) {
           name="name"
           placeholder={user ? user.name : ""}
         />
-        <small id="helpId" className="form-text text-muted">
-          Help text
-        </small>
       </div>
       <div className="form-group">
         <label for="image">Image</label>
